@@ -21,3 +21,8 @@ brew "markdown"
 brew "shellcheck"
 
 brew "stow"
+# lsの代替
+brew "eza"
+
+cask "divvy"
+cask "brave-browser"
