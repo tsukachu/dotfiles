@@ -73,3 +73,10 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(setq mac-right-option-modifier 'meta)
+
+(map! "M-h" #'backward-kill-word
+      "C-h" #'backward-delete-char-untabify)
+
+(after! anzu
+  (global-anzu-mode +1))
