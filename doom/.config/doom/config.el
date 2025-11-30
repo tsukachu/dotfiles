@@ -99,3 +99,13 @@
   (map! "C-<tab>" #'centaur-tabs-forward)
   (map! "C-S-<tab>" #'centaur-tabs-backward)
   (map! "s-w" #'kill-current-buffer))
+
+(after! neotree
+  (setq neo-theme 'nerd-icons)
+  (map! :map neotree-mode-map
+        "cr" #'neotree-dir) ;; Change Root
+  )
+;; なぜか after! neotree 内にすると有効にならない
+(map! :leader
+      :desc "Toggle NeoTree"
+      "<f8>" #'neotree-toggle)
