@@ -19,6 +19,7 @@ brew "fd"
 brew "fontconfig"
 brew "markdown"
 brew "shellcheck"
+brew "aspell"
 
 brew "stow"
 # lsの代替

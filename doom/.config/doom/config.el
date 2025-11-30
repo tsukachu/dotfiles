@@ -80,3 +80,17 @@
 
 (after! anzu
   (global-anzu-mode +1))
+
+(after! ispell
+  (setq ispell-dictionary "en_US"))
+
+;; なぜか after! spell-fu 内にすると有効にならない
+(spell-fu-global-mode)
+
+;; prog-mode でも全てチェックするように
+(after! spell-fu
+  (defun spell-fu-all-faces ()
+    (setq spell-fu-faces-include nil)
+    (setq spell-fu-faces-exclude nil))
+
+  (add-hook! 'spell-fu-mode-hook #'spell-fu-all-faces))
