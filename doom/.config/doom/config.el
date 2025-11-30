@@ -94,3 +94,8 @@
     (setq spell-fu-faces-exclude nil))
 
   (add-hook! 'spell-fu-mode-hook #'spell-fu-all-faces))
+
+(after! centaur-tabs
+  (map! "C-<tab>" #'centaur-tabs-forward)
+  (map! "C-S-<tab>" #'centaur-tabs-backward)
+  (map! "s-w" #'kill-current-buffer))
