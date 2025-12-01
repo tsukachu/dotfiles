@@ -144,3 +144,12 @@
 (use-package! rainbow-mode
   :hook
   (prog-mode . rainbow-mode))
+
+(use-package! symbol-overlay
+  :config
+  (setq symbol-overlay-idle-time 0.2)
+  (map! "M-n" #'symbol-overlay-jump-next
+        "M-p" #'symbol-overlay-jump-prev)
+  :hook
+  (prog-mode . symbol-overlay-mode)
+  )

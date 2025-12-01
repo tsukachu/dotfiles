@@ -54,3 +54,4 @@
 ;; (unpin! t)
 (package! ace-window)
 (package! rainbow-mode)
+(package! symbol-overlay)
