@@ -84,11 +84,9 @@
 (after! ispell
   (setq ispell-dictionary "en_US"))
 
-;; なぜか after! spell-fu 内にすると有効にならない
 (spell-fu-global-mode)
-
-;; prog-mode でも全てチェックするように
 (after! spell-fu
+  ;; prog-mode でも全てチェックするように
   (defun spell-fu-all-faces ()
     (setq spell-fu-faces-include nil)
     (setq spell-fu-faces-exclude nil))
@@ -96,19 +94,13 @@
   (add-hook! 'spell-fu-mode-hook #'spell-fu-all-faces))
 
 (after! centaur-tabs
-  (map! "C-<tab>" #'centaur-tabs-forward)
-  (map! "C-S-<tab>" #'centaur-tabs-backward)
-  (map! "s-w" #'kill-current-buffer))
+  (map! "C-<tab>" #'centaur-tabs-forward
+        "C-S-<tab>" #'centaur-tabs-backward
+        "s-w" #'kill-current-buffer))
 
+(map! "<f8>" #'neotree-toggle)
 (after! neotree
-  (setq neo-theme 'nerd-icons)
-  (map! :map neotree-mode-map
-        "cr" #'neotree-dir) ;; Change Root
-  )
-;; なぜか after! neotree 内にすると有効にならない
-(map! :leader
-      :desc "Toggle NeoTree"
-      "<f8>" #'neotree-toggle)
+  (setq neo-theme 'nerd-icons))
 
 (use-package! avy
   :bind (:map isearch-mode-map
@@ -129,15 +121,14 @@
     (set-face-background 'lazy-highlight (face-background 'default)))
   (defun my/avy-isearch-face-off ()
     ;; 確実に戻すためにマジックナンバーを使用
-    (set-face-foreground 'lazy-highlight "#DFDFDF")
-    (set-face-background 'lazy-highlight "#387aa7"))
+    (set-face-foreground 'lazy-highlight "#DFDFDF") ;; (face-foreground 'lazy-highlight)と同値
+    (set-face-background 'lazy-highlight "#387aa7")) ;; (face-background 'lazy-highlight)と同値
 
   (advice-add 'avy-isearch :before #'my/avy-isearch-face-on)
   (advice-add 'avy-isearch :after #'my/avy-isearch-face-off))
 
 (use-package! ace-window
-  :bind
-  ("C-x o" . ace-window)
+  :bind ("C-x o" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
@@ -148,8 +139,13 @@
 (use-package! symbol-overlay
   :config
   (setq symbol-overlay-idle-time 0.2)
+  ;; isearch風に
+  (set-face-foreground 'symbol-overlay-default-face (face-foreground 'lazy-highlight))
+  (set-face-background 'symbol-overlay-default-face (face-background 'lazy-highlight))
+
   (map! "M-n" #'symbol-overlay-jump-next
-        "M-p" #'symbol-overlay-jump-prev)
+        "M-p" #'symbol-overlay-jump-prev
+        "M-i" #'symbol-overlay-put
+        "<f7>" #'symbol-overlay-remove-all)
   :hook
-  (prog-mode . symbol-overlay-mode)
-  )
+  (prog-mode . symbol-overlay-mode))
