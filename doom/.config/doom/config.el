@@ -109,3 +109,38 @@
 (map! :leader
       :desc "Toggle NeoTree"
       "<f8>" #'neotree-toggle)
+
+(use-package! avy
+  :bind (:map isearch-mode-map
+              ("C-'" . avy-isearch))
+  :config
+  ;; avy-goto-*の色をace-window風に
+  (let ((faces
+         '(avy-lead-face ;; 1文字目
+           avy-lead-face-0 ;; 2文字目
+           avy-lead-face-2))) ;; 3文字目
+    (dolist (face faces)
+      (set-face-attribute face nil
+                          :foreground "red"
+                          :background (face-background 'default))))
+  ;; avy-isearchの色をace-window風に
+  (defun my/avy-isearch-face-on ()
+    (set-face-foreground 'lazy-highlight (face-foreground 'font-lock-doc-face))
+    (set-face-background 'lazy-highlight (face-background 'default)))
+  (defun my/avy-isearch-face-off ()
+    ;; 確実に戻すためにマジックナンバーを使用
+    (set-face-foreground 'lazy-highlight "#DFDFDF")
+    (set-face-background 'lazy-highlight "#387aa7"))
+
+  (advice-add 'avy-isearch :before #'my/avy-isearch-face-on)
+  (advice-add 'avy-isearch :after #'my/avy-isearch-face-off))
+
+(use-package! ace-window
+  :bind
+  ("C-x o" . ace-window)
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+
+(use-package! rainbow-mode
+  :hook
+  (prog-mode . rainbow-mode))
