@@ -21,6 +21,19 @@ brew "markdown"
 brew "shellcheck"
 brew "aspell"
 
+brew "pyenv"
+brew "pyenv-virtualenv"
+# pythonの推奨ビルド環境(2025.12 pyenv v2.6.13時点)
+brew "openssl"
+brew "readline"
+brew "sqlite3"
+brew "xz"
+brew "tcl-tk@8"
+brew "libb2"
+brew "zstd"
+brew "zlib"
+brew "pkgconfig"
+
 brew "stow"
 # lsの代替
 brew "eza"
