@@ -1,1 +1,38 @@
-# dotfiles
+#+title: dotfiles
+
+* チートシート
+** Doom
+| leader      | C-c-   |
+| localleader | C-c l- |
+** neotree
+| neotreeを開閉              | F8      |
+| 次の行へ                   | n       |
+| 前の行へ                   | p       |
+| 上のディレクトリへ         | U       |
+| 隠しファイルの表示切替     | H       |
+| ディレクトリを再帰的に開く | O       |
+| ルートディレクトリを変更   | C-c C-c |
+** tabs
+| 次のタブへ   | C-<TAB>   |
+| 前のタブへ   | C-S-<TAB> |
+| タブを閉じる | M-w       |
+** undo
+| undo                 | C-/   |
+| redo                 | C-?   |
+| undo-treeを開く      | C-x u |
+| 上へ(古)             | p     |
+| 履歴を下へ(新)       | n     |
+| ブランチを左へ       | b     |
+| ブランチを右へ       | f     |
+| タイムスタンプを表示 | t     |
+| 差分の表示/非表示    | d     |
+| undo-treeを閉じる    | q     |
+** avy-search
+| avy-isearch(isearch中) | C-' |
+** ace-winow
+| ウィンドウを選択 | C-x o |
+** symbol-overlay
+| 次のシンボルへ                     | M-n |
+| 前のシンボルへ                     | M-p |
+| カーソル上のシンボルをハイライト   | M-i |
+| すべてのシンボルのハイライトを解除 | F7  |
