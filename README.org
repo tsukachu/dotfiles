@@ -36,3 +36,26 @@
 | 前のシンボルへ                     | M-p |
 | カーソル上のシンボルをハイライト   | M-i |
 | すべてのシンボルのハイライトを解除 | F7  |
+
+
+* Tips
+** [Doom]設定の反映
+~init.el~ と ~package.el~ を変更した後は ~$ doom sync~ を実行する
+
+~config.el~ の反映は再起動以外に ~+eval/buffer~ , ~+eval/line-or-region~ を実行する
+** ドキュメントやプロパティの調べ方
+~describe-function~ : 関数名を入力すると、ドキュメントが表示される
+
+~describe-key~ : キーを入力すると、対応する関数のドキュメントが表示される
+
+~describe-variable~ : 変数名を入力すると、ドキュメントが表示される
+
+~describe-face~ : face名を入力すると、プロパティが表示される
+
+~list-colors-display~: 定義済みのカラー名と見た目が表示される
+** スペルチェック用辞書への登録/削除
+~+spell/add-word~ , ~+spell/remove-word~ を実行する
+** org-mode のプレビュー
+~org-preview-html-mode~ を実行する
+** テキストサイズを調整する
+~text-scale-adjust (C-x C-0)~ を実行する
