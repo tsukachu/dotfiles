@@ -55,3 +55,4 @@
 (package! ace-window)
 (package! rainbow-mode)
 (package! symbol-overlay)
+(package! org-preview-html)
