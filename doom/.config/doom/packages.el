@@ -56,3 +56,4 @@
 (package! rainbow-mode)
 (package! symbol-overlay)
 (package! org-preview-html)
+(package! exec-path-from-shell)

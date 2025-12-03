@@ -149,3 +149,24 @@
         "<f7>" #'symbol-overlay-remove-all)
   :hook
   (prog-mode . symbol-overlay-mode))
+
+(use-package! exec-path-from-shell
+  :init
+  ;; fishから情報を取るように
+  (setq exec-path-from-shell-shell-name "fish")
+  (setq exec-path-from-shell-arguments '("-l")) ;; configの読み込みのためログインシェルとする
+  :config
+  (exec-path-from-shell-initialize))
+
+(after! python
+  ;; pyenvがPATHに含まれていると "pyenv version-name" の実行値が表示される
+  ;; モードラインには別途pyenvの情報が載るので、ここはvenvの元のpythonのバージョンを表示させる
+  ;; ("pyenv version-name" がvenvの名前になるのはpyenv-virtualenvの影響だと思われる)
+  (defun my/overwrite-variables-before-exec (orig-fn &rest args)
+    (when (and (stringp doom-modeline-env--command)
+               (string-match-p "pyenv" doom-modeline-env--command))
+      (setq doom-modeline-env--command "python")
+      (setq doom-modeline-env--command-args '("--version"))
+      (apply orig-fn args)))
+
+  (advice-add 'doom-modeline-update-env :around #'my/overwrite-variables-before-exec))
