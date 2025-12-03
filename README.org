@@ -53,9 +53,13 @@
 ~describe-face~ : face名を入力すると、プロパティが表示される
 
 ~list-colors-display~: 定義済みのカラー名と見た目が表示される
+
+~apropos-value~: 変数の値を入力すると、変数名が表示される
+** elispをお試しで実行
+~.el~ や ~*scratch*~ にelispを書いてから ~C-c e~ もしくは ~M-:~ で実行出来る
 ** スペルチェック用辞書への登録/削除
 ~+spell/add-word~ , ~+spell/remove-word~ を実行する
-** org-mode のプレビュー
+** org-modeのプレビュー
 ~org-preview-html-mode~ を実行する
 ** テキストサイズを調整する
 ~text-scale-adjust (C-x C-0)~ を実行する
