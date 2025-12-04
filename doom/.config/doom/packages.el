@@ -57,3 +57,5 @@
 (package! symbol-overlay)
 (package! org-preview-html)
 (package! exec-path-from-shell)
+(package! pulsar)
+(package! imenu-list)

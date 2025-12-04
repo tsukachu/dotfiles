@@ -21,7 +21,7 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "Moralerspace Neon HWJPDOC" :size 14))
+(setq doom-font (font-spec :family "Moralerspace Neon HWJPDOC" :size 15))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -31,7 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dracula)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -78,6 +78,8 @@
 (map! "M-h" #'backward-kill-word
       "C-h" #'backward-delete-char-untabify)
 
+(setq-default cursor-type 'bar)
+
 (after! anzu
   (global-anzu-mode +1))
 
@@ -98,8 +100,9 @@
         "C-S-<tab>" #'centaur-tabs-backward
         "s-w" #'kill-current-buffer))
 
-(map! "<f8>" #'neotree-toggle)
+(map! "s-b" #'neotree-toggle)
 (after! neotree
+  (setq neo-window-width 45)
   (setq neo-theme 'nerd-icons))
 
 (use-package! avy
@@ -130,7 +133,14 @@
 (use-package! ace-window
   :bind ("C-x o" . ace-window)
   :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+
+  ;; ace-windowとpulsar-pulse-lineで引数の数が合わないのでwrapperにする
+  (defun my/pulse-after-switching
+      (pulsar-pulse-line))
+
+  (advice-add 'ace-window :after #'my/pulse-after-switching)
+  )
 
 (use-package! rainbow-mode
   :hook
@@ -146,7 +156,7 @@
   (map! "M-n" #'symbol-overlay-jump-next
         "M-p" #'symbol-overlay-jump-prev
         "M-i" #'symbol-overlay-put
-        "<f7>" #'symbol-overlay-remove-all)
+        "<f8>" #'symbol-overlay-remove-all)
   :hook
   (prog-mode . symbol-overlay-mode))
 
@@ -170,3 +180,25 @@
       (apply orig-fn args)))
 
   (advice-add 'doom-modeline-update-env :around #'my/overwrite-variables-before-exec))
+
+(use-package! pulsar
+  :init
+  (pulsar-global-mode 1)
+  :config
+  (setq pulsar-pulse-on-window-change t)
+  (dolist (f '(isearch-exit avy-isearch neotree-toggle))
+    (advice-add f :after #'pulsar-pulse-line)))
+
+(use-package! imenu-list
+  :bind ( "M-s-b" . #'imenu-list-smart-toggle)
+  :config
+
+  ;; doom の popup レイヤーで管理されているらしく imenu-list-sise が効かなかった
+  (set-popup-rule! "^\\*Ilist"
+    :side 'right :size 45 :quit t :select nil :ttl 0))
+
+(after! vertico-posframe
+  (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center))
+
+(after! indent-bars
+  (setq indent-bars-prefer-character nil))
