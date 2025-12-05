@@ -164,7 +164,31 @@
   :config
   ;; doom の popup レイヤーで管理されているらしく imenu-list-sise が効かなかった
   (set-popup-rule! "^\\*Ilist"
-    :side 'right :size 45 :quit t :select nil :ttl 0))
+    :side 'right :size 45 :quit nil :select nil :ttl 0)
+
+  ;; アイコンの振り分け
+  (defun my/imenu-get-icon (kind)
+    (cond
+     ((string= kind "class") (nerd-icons-codicon "nf-cod-symbol_class"))
+     ((string= kind "def")   (nerd-icons-codicon "nf-cod-symbol_method"))
+     (t (nerd-icons-octicon "nf-oct-tag"))))
+
+  ;; entry にアイコンを付与する
+  (defun my/imenu (orig-fn &rest args)
+    (let* ((entry (car args))
+           (label (or (and (stringp entry) entry)
+                      (and (stringp (car-safe entry)) (car entry))))
+           (kind (and (string-match "(\\([^)]+\\))$" label)
+                      (match-string 1 label)))
+           (icon  (my/imenu-get-icon kind))
+           (new-label (concat icon " " label))
+           (new-entry (if (consp entry)
+                          (cons new-label (cdr entry))
+                        new-label))
+           (new-args (cons new-entry (cdr args))))
+      (apply orig-fn new-args)))
+
+  (advice-add 'imenu-list--insert-entry :around #'my/imenu))
 
 ;; pulsar
 ;; :ui nav-flash はdeprecatedらしくpulsarに置き換わるらしい
