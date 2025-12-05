@@ -80,12 +80,34 @@
 
 (setq-default cursor-type 'bar)
 
+;;; :completion ----------------------------------------------------------------
+;; vertico
+(after! vertico-posframe
+  (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center))
+
+;;; :ui ------------------------------------------------------------------------
+;; indent-guides
+(after! indent-bars
+  (setq indent-bars-prefer-character nil))
+
+;; modeline
 (after! anzu
   (global-anzu-mode +1))
 
-(after! ispell
-  (setq ispell-dictionary "en_US"))
+;; neotree
+(map! "s-b" #'neotree-toggle)
+(after! neotree
+  (setq neo-window-width 45)
+  (setq neo-theme 'nerd-icons))
 
+;; tabs
+(after! centaur-tabs
+  (map! "C-<tab>" #'centaur-tabs-forward
+        "C-S-<tab>" #'centaur-tabs-backward
+        "s-w" #'kill-current-buffer))
+
+;;; :checkers ------------------------------------------------------------------
+;; spell
 (spell-fu-global-mode)
 (after! spell-fu
   ;; prog-mode でも全てチェックするように
@@ -95,29 +117,34 @@
 
   (add-hook! 'spell-fu-mode-hook #'spell-fu-all-faces))
 
-(after! centaur-tabs
-  (map! "C-<tab>" #'centaur-tabs-forward
-        "C-S-<tab>" #'centaur-tabs-backward
-        "s-w" #'kill-current-buffer))
+(after! ispell
+  (setq ispell-dictionary "en_US"))
 
-(map! "s-b" #'neotree-toggle)
-(after! neotree
-  (setq neo-window-width 45)
-  (setq neo-theme 'nerd-icons))
+;;; :lang ----------------------------------------------------------------------
+;; python
+(after! python-mode-hook
+  ;; pyenv-virtualenv使用時、modelineにvenv名を表示させずにpythonのバージョンを表示させる
+  ;; (pyenvがPATHに含まれていると "pyenv version-name" が表示されるのでそれを回避)
+  (defun my/overwrite-variables-before-exec (orig-fn &rest args)
+    (when (and (stringp doom-modeline-env--command)
+               (string-match-p "pyenv" doom-modeline-env--command))
+      (setq doom-modeline-env--command "python")
+      (setq doom-modeline-env--command-args '("--version"))
+      (apply orig-fn args)))
 
-(use-package! avy
+  (advice-add 'doom-modeline-update-env :around #'my/overwrite-variables-before-exec))
+
+;;; :config --------------------------------------------------------------------
+;; default
+(use-package! avy ; (use-package! avy) は無さそうだった
   :bind (:map isearch-mode-map
               ("C-'" . avy-isearch))
   :config
   ;; avy-goto-*の色をace-window風に
-  (let ((faces
-         '(avy-lead-face ;; 1文字目
-           avy-lead-face-0 ;; 2文字目
-           avy-lead-face-2))) ;; 3文字目
-    (dolist (face faces)
-      (set-face-attribute face nil
-                          :foreground "red"
-                          :background (face-background 'default))))
+  (dolist (face avy-lead-faces)
+    (set-face-attribute face nil
+                        :foreground "red"
+                        :background (face-background 'default)))
   ;; avy-isearchの色をace-window風に
   (defun my/avy-isearch-face-on ()
     (set-face-foreground 'lazy-highlight (face-foreground 'font-lock-doc-face))
@@ -130,22 +157,27 @@
   (advice-add 'avy-isearch :before #'my/avy-isearch-face-on)
   (advice-add 'avy-isearch :after #'my/avy-isearch-face-off))
 
-(use-package! ace-window
-  :bind ("C-x o" . ace-window)
+;;; additional -----------------------------------------------------------------
+;; imenu-list
+(use-package! imenu-list
+  :bind ( "M-s-b" . #'imenu-list-smart-toggle)
   :config
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  ;; doom の popup レイヤーで管理されているらしく imenu-list-sise が効かなかった
+  (set-popup-rule! "^\\*Ilist"
+    :side 'right :size 45 :quit t :select nil :ttl 0))
 
-  ;; ace-windowとpulsar-pulse-lineで引数の数が合わないのでwrapperにする
-  (defun my/pulse-after-switching
-      (pulsar-pulse-line))
+;; pulsar
+;; :ui nav-flash はdeprecatedらしくpulsarに置き換わるらしい
+;; (modules/ui/nav-flash/config.elより)
+(use-package! pulsar
+  :init
+  (pulsar-global-mode 1)
+  :config
+  (setq pulsar-pulse-on-window-change t)
+  (dolist (f '(isearch-exit avy-isearch neotree-toggle))
+    (advice-add f :after #'pulsar-pulse-line)))
 
-  (advice-add 'ace-window :after #'my/pulse-after-switching)
-  )
-
-(use-package! rainbow-mode
-  :hook
-  (prog-mode . rainbow-mode))
-
+;; symbol-overlay
 (use-package! symbol-overlay
   :config
   (setq symbol-overlay-idle-time 0.2)
@@ -159,46 +191,3 @@
         "<f8>" #'symbol-overlay-remove-all)
   :hook
   (prog-mode . symbol-overlay-mode))
-
-(use-package! exec-path-from-shell
-  :init
-  ;; fishから情報を取るように
-  (setq exec-path-from-shell-shell-name "fish")
-  (setq exec-path-from-shell-arguments '("-l")) ;; configの読み込みのためログインシェルとする
-  :config
-  (exec-path-from-shell-initialize))
-
-(after! python
-  ;; pyenvがPATHに含まれていると "pyenv version-name" の実行値が表示される
-  ;; モードラインには別途pyenvの情報が載るので、ここはvenvの元のpythonのバージョンを表示させる
-  ;; ("pyenv version-name" がvenvの名前になるのはpyenv-virtualenvの影響だと思われる)
-  (defun my/overwrite-variables-before-exec (orig-fn &rest args)
-    (when (and (stringp doom-modeline-env--command)
-               (string-match-p "pyenv" doom-modeline-env--command))
-      (setq doom-modeline-env--command "python")
-      (setq doom-modeline-env--command-args '("--version"))
-      (apply orig-fn args)))
-
-  (advice-add 'doom-modeline-update-env :around #'my/overwrite-variables-before-exec))
-
-(use-package! pulsar
-  :init
-  (pulsar-global-mode 1)
-  :config
-  (setq pulsar-pulse-on-window-change t)
-  (dolist (f '(isearch-exit avy-isearch neotree-toggle))
-    (advice-add f :after #'pulsar-pulse-line)))
-
-(use-package! imenu-list
-  :bind ( "M-s-b" . #'imenu-list-smart-toggle)
-  :config
-
-  ;; doom の popup レイヤーで管理されているらしく imenu-list-sise が効かなかった
-  (set-popup-rule! "^\\*Ilist"
-    :side 'right :size 45 :quit t :select nil :ttl 0))
-
-(after! vertico-posframe
-  (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center))
-
-(after! indent-bars
-  (setq indent-bars-prefer-character nil))

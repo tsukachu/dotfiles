@@ -7,7 +7,7 @@ vscode "ms-ceintl.vscode-language-pack-ja"
 brew "fish"
 
 tap "railwaycat/emacsmacport"
-# Caskだとオプションを指定出来ない
+# Cask だとオプションを指定出来ない
 brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-modules", "with-native-compilation"]
 
 # Doom
@@ -23,7 +23,7 @@ brew "aspell"
 
 brew "pyenv"
 brew "pyenv-virtualenv"
-# pythonの推奨ビルド環境(2025.12 pyenv v2.6.13時点)
+# python の推奨ビルド環境(pyenv v2.6.13 時点)
 brew "openssl"
 brew "readline"
 brew "sqlite3"
@@ -35,7 +35,7 @@ brew "zlib"
 brew "pkgconfig"
 
 brew "stow"
-# lsの代替
+# ls の代替
 brew "eza"
 
 cask "divvy"

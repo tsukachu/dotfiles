@@ -3,14 +3,14 @@ if status is-interactive
     fish_add_path ~/.emacs.d/bin
 
     # pyenv
-    set -x PYENV_ROOT $HOME/.pyenv # configで都度読み込まれるので-U/--universalは外す
+    set -x PYENV_ROOT $HOME/.pyenv # config で都度読み込まれるので-U/--universal は外す
     test -d $PYENV_ROOT/bin; and fish_add_path $PYENV_ROOT/bin
     pyenv init - fish | source
     # pyenv-virtualenv
     pyenv virtualenv-init - | source
 end
 
-# Intel/Apple Siliconでパスが変わるので
+# Intel/Apple Silicon でパスが変わるので
 set --local prefix (brew --prefix)
 
 # homebrew
@@ -18,7 +18,7 @@ if type -q brew
     eval ("$prefix/bin/brew" shellenv)
 end
 
-# python推奨ビルド環境用
+# python の推奨ビルド環境
 set -x PATH "$prefix/opt/sqlite/bin" "$prefix/opt/tcl-tk@8/bin" $PATH
 set -x LDFLAGS "-L$prefix/opt/sqlite/lib -L$prefix/opt/tcl-tk@8/lib -L$prefix/opt/zlib/lib"
 set -x CPPFLAGS "-I$prefix/opt/sqlite/include -I$prefix/opt/tcl-tk@8/include -I$prefix/opt/zlib/include"
