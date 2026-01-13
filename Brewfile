@@ -6,6 +6,9 @@ vscode "ms-ceintl.vscode-language-pack-ja"
 
 cask "ghostty"
 
+cask "claude-code"
+cask "codex"
+
 brew "fish"
 
 tap "railwaycat/emacsmacport"
