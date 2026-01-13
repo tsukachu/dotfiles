@@ -4,6 +4,8 @@ cask "visual-studio-code"
 # 拡張機能
 vscode "ms-ceintl.vscode-language-pack-ja"
 
+cask "ghostty"
+
 brew "fish"
 
 tap "railwaycat/emacsmacport"
