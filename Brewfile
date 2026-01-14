@@ -39,6 +39,8 @@ brew "zstd"
 brew "zlib"
 brew "pkgconfig"
 
+brew "nodenv"
+
 brew "stow"
 # ls の代替
 brew "eza"
