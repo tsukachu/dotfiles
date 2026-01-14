@@ -53,6 +53,6 @@ else
 fi
 
 echo "===> 設定ファイルを配置"
-stow --adopt -v zsh fish doom vscode ghostty
+stow --adopt -v fish doom vscode ghostty
 # --adopt での変更を元に戻す
 git restore .
