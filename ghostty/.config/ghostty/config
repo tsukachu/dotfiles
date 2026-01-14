@@ -1,4 +1,5 @@
-command = "/usr/local/bin/fish"
+command = /bin/zsh --login -c '/usr/bin/env fish --login'
+shell-integration = fish
 
 font-family = "Moralerspace Neon HWJPDOC"
 font-size = 15
