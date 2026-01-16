@@ -122,7 +122,7 @@
 
 ;;; :lang ----------------------------------------------------------------------
 ;; python
-(after! python-mode-hook
+(after! python
   ;; pyenv-virtualenv使用時、modelineにvenv名を表示させずにpythonのバージョンを表示させる
   ;; (pyenvがPATHに含まれていると "pyenv version-name" が表示されるのでそれを回避)
   (defun my/overwrite-variables-before-exec (orig-fn &rest args)
