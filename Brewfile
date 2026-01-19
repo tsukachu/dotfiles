@@ -9,6 +9,9 @@ cask "ghostty"
 cask "claude-code"
 cask "codex"
 
+brew "gh"
+brew "jq"
+
 brew "fish"
 
 tap "railwaycat/emacsmacport"
