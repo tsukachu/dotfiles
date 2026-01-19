@@ -121,6 +121,40 @@
   (setq ispell-dictionary "en_US"))
 
 ;;; :lang ----------------------------------------------------------------------
+;; lsp
+(after! eglot
+  (defvar my/disable-didChangeWatchedFiles nil)
+
+  (defun my/eglot-restart (buf)
+    (when (buffer-live-p buf)
+      (with-current-buffer buf
+        (when-let ((srv (eglot-current-server)))
+          (ignore-errors (eglot-shutdown srv)))
+        (ignore-errors (eglot-ensure)))))
+
+  (defun my/register-capability-maybe-disable-didChangeWatchedFiles (orig-fn &rest args)
+    (let ((method (cadr args)))
+      (cond
+       ;; 既に無効の場合は登録させない
+       ((and my/disable-didChangeWatchedFiles
+             (eq method 'workspace/didChangeWatchedFiles))
+        (ignore))
+       ;; FD が枯渇した場合は didChangeWatchedFiles を無効にして再起動する
+       ((eq method 'workspace/didChangeWatchedFiles)
+        (condition-case err
+            (apply orig-fn args)
+          (file-notify-error
+           (setq my/disable-didChangeWatchedFiles t)
+           (message "[my/eglot] didChangeWatchedFilesを無効にして再起動します。(%s)" err)
+           (run-at-time 0 nil #'my/eglot-restart (current-buffer))
+           (ignore))))
+       ;; didChangeWatchedFiles 以外は通常通りに処理する
+       (t (apply orig-fn args)))))
+
+  ;; 社用端末に対応出来るように emacs 側でなんとかする
+  (advice-add 'eglot-register-capability :around #'my/register-capability-maybe-disable-didChangeWatchedFiles))
+
+;;; :lang ----------------------------------------------------------------------
 ;; python
 (after! python
   ;; pyenv-virtualenv使用時、modelineにvenv名を表示させずにpythonのバージョンを表示させる
