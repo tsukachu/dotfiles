@@ -110,6 +110,10 @@
 ;; spell
 (spell-fu-global-mode)
 (after! spell-fu
+  (add-hook 'doom-load-theme-hook
+            (lambda ()
+              (set-face-underline 'spell-fu-incorrect-face (list :style 'wave :color (doom-color 'yellow)))))
+
   ;; prog-mode でも全てチェックするように
   (defun spell-fu-all-faces ()
     (setq spell-fu-faces-include nil)
