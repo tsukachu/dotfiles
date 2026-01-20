@@ -172,6 +172,16 @@
 
   (advice-add 'doom-modeline-update-env :around #'my/overwrite-variables-before-exec))
 
+;; web
+(after! web-mode
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+
+
+  (setq web-mode-script-padding 0)
+  (setq web-mode-style-padding 0))
+
 ;;; :config --------------------------------------------------------------------
 ;; default
 (use-package! avy ; (use-package! avy) は無さそうだった
