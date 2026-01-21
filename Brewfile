@@ -20,7 +20,7 @@ brew "fish"
 
 tap "d12frosted/emacs-plus"
 # v30.2(2026/01/21 時点)
-cask "emacs-plus-app"
+cask "d12frosted/emacs-plus/emacs-plus-app"
 
 # Doom
 brew "git"
