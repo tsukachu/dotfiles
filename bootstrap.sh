@@ -22,13 +22,13 @@ echo "==> パッケージをインストール"
 brew bundle -v
 
 # Emacs を Spotlight で検索出来るように
-echo "==> Emacs.app を配置"
-EMACS_PATH="/Applications/Emacs.app"
-if ! is_dir $EMACS_PATH; then
-    osacompile -o "$EMACS_PATH" -e 'tell application "Finder" to open POSIX file "'"$(brew --prefix)"'/opt/emacs-mac/Emacs.app"'
-else
-    echo "✓ Emacs.app は配置済み"
-fi
+# echo "==> Emacs.app を配置"
+# EMACS_PATH="/Applications/Emacs.app"
+# if ! is_dir $EMACS_PATH; then
+#     osacompile -o "$EMACS_PATH" -e 'tell application "Finder" to open POSIX file "'"$(brew --prefix)"'/opt/emacs-mac/Emacs.app"'
+# else
+#     echo "✓ Emacs.app は配置済み"
+# fi
 
 echo "==> Doom Emacs をインストール"
 DOT_EMACS_D_PATH="$HOME/.emacs.d"

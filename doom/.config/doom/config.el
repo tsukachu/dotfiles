@@ -88,7 +88,7 @@
 ;;; :ui ------------------------------------------------------------------------
 ;; indent-guides
 (after! indent-bars
-  (setq indent-bars-prefer-character nil))
+  (setq indent-bars-no-stipple-char ?▏))
 
 ;; modeline
 (after! anzu

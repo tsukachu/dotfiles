@@ -14,9 +14,13 @@ brew "jq"
 
 brew "fish"
 
-tap "railwaycat/emacsmacport"
+# tap "railwaycat/emacsmacport"
 # Cask だとオプションを指定出来ない
-brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-modules", "with-native-compilation"]
+# brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-modules", "with-native-compilation"]
+
+tap "d12frosted/emacs-plus"
+# v30.2(2026/01/21 時点)
+cask "emacs-plus-app"
 
 # Doom
 brew "git"
