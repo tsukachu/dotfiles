@@ -73,6 +73,8 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+(setq confirm-kill-emacs nil)
+
 (setq mac-right-option-modifier 'meta)
 
 (map! "M-h" #'backward-kill-word
@@ -108,11 +110,10 @@
 
 ;;; :checkers ------------------------------------------------------------------
 ;; spell
-(spell-fu-global-mode)
 (after! spell-fu
-  (add-hook 'doom-load-theme-hook
-            (lambda ()
-              (set-face-underline 'spell-fu-incorrect-face (list :style 'wave :color (doom-color 'yellow)))))
+  (set-face-underline 'spell-fu-incorrect-face (list :style 'wave :color (doom-color 'green)))
+
+  (setq spell-fu-word-delimit-camel-case t)
 
   ;; prog-mode でも全てチェックするように
   (defun spell-fu-all-faces ()

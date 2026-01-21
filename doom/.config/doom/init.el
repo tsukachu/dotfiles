@@ -85,7 +85,7 @@
 
        :checkers
        (syntax +icons)              ; tasing you for every semicolon you forget
-       (spell +aspell) ; tasing you for misspelling mispelling
+       (spell +everywhere +aspell) ; tasing you for misspelling mispelling
        ;;grammar           ; tasing grammar mistake every you make
 
        :tools
