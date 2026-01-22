@@ -53,6 +53,7 @@ else
 fi
 
 echo "===> 設定ファイルを配置"
-stow --adopt -v fish doom vscode ghostty git
+mkdir -p ~/.ssh
+stow --adopt -v fish doom vscode ghostty git ssh
 # --adopt での変更を元に戻す
 git restore .
