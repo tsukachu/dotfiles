@@ -14,6 +14,8 @@ brew "jq"
 
 brew "fish"
 
+brew "git-delta"
+
 # tap "railwaycat/emacsmacport"
 # Cask だとオプションを指定出来ない
 # brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-modules", "with-native-compilation"]
