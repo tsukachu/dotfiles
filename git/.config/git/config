@@ -8,5 +8,20 @@
 [delta]
 	navigate = true
 	dark = true
+	line-numbers = true
+	hunk-header-style = omit
+	syntax-theme = Dracula
+
+	# ghosttyのテーマ(Dracula)の背景色(#282a36)を元に計算
+	# ベース: "#46954a26"
+	plus-style = syntax "#2d3a39" # ≒ 15%
+	# ベース: "#46954a66"
+	plus-emph-style = syntax "#46954a" # = 100% (no alpha)
+
+	# ベース: "#e5534b1a"
+	minus-style = normal "#443039" # ≒ 15%
+	# ベース: "#e5534b66"
+	minus-emph-style = normal "#e5534b" # = 100% (no alpha)
+
 [merge]
 	conflictStyle = zdiff3
