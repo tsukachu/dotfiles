@@ -14,8 +14,6 @@ brew "jq"
 
 brew "fish"
 
-brew "git-delta"
-
 # tap "railwaycat/emacsmacport"
 # Cask だとオプションを指定出来ない
 # brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-modules", "with-native-compilation"]
@@ -51,8 +49,9 @@ brew "pkgconfig"
 brew "nodenv"
 
 brew "stow"
-# ls の代替
-brew "eza"
+brew "eza" # ls の代替
+brew "git-delta" # diff-highlight の代替
+brew "bat" # cat の代替
 
 cask "divvy"
 cask "brave-browser"
