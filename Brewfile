@@ -9,6 +9,8 @@ cask "ghostty"
 cask "claude-code"
 cask "codex"
 
+cask "obsidian"
+
 brew "gh"
 brew "jq"
 
