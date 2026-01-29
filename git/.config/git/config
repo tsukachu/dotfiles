@@ -9,6 +9,8 @@
 	navigate = true
 	dark = true
 	line-numbers = true
+	side-by-side = true
+
 	hunk-header-style = omit
 	syntax-theme = Dracula
 
