@@ -68,6 +68,13 @@ if status is-interactive
         __nodenv_load
         command npm $argv
     end
+
+    function make
+        functions -e make
+        __pyenv_load
+        __nodenv_load
+        command make $argv
+    end
 end
 
 # Intel/Apple Silicon でパスが変わるので
