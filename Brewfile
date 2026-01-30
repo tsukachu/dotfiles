@@ -1,9 +1,5 @@
 cask "google-japanese-ime"
 
-cask "visual-studio-code"
-# 拡張機能
-vscode "ms-ceintl.vscode-language-pack-ja"
-
 cask "ghostty"
 
 cask "claude-code"
@@ -15,10 +11,6 @@ brew "gh"
 brew "jq"
 
 brew "fish"
-
-# tap "railwaycat/emacsmacport"
-# Cask だとオプションを指定出来ない
-# brew "railwaycat/emacsmacport/emacs-mac@29", args: ["with-modules", "with-native-compilation"]
 
 tap "d12frosted/emacs-plus"
 # v30.2(2026/01/21 時点)
@@ -49,6 +41,7 @@ brew "zlib"
 brew "pkgconfig"
 
 brew "nodenv"
+brew "node-build"
 
 brew "stow"
 brew "eza" # ls の代替
