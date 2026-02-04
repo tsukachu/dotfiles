@@ -45,6 +45,6 @@ fi
 
 echo "===> 設定ファイルを配置"
 mkdir -p ~/.ssh
-stow --adopt -v fish doom vscode ghostty git ssh
+stow --adopt -v fish doom ghostty git ssh
 # --adopt での変更を元に戻す
 git restore .
