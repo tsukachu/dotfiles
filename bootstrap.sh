@@ -12,14 +12,23 @@ is_dir() {
 
 echo "==> Homebrew をインストール"
 if ! has_command brew; then
-    # v5.0.3 時点
+    # v5.0.13 時点
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
 else
     echo "✓ Homebrew はインストール済み"
 fi
 
 echo "==> パッケージをインストール"
 brew bundle -v
+
+# divvy が intel 用にビルドされているので必要
+echo "==> Rosetta をインストール"
+if ! is_dir "/Library/Apple/usr/libexec/oah"; then
+   softwareupdate --install-rosetta --agree-to-license
+else
+   echo "✓ Rosetta はインストール済み"
+fi
 
 echo "==> Doom Emacs をインストール"
 DOT_EMACS_D_PATH="$HOME/.emacs.d"

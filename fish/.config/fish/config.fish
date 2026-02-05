@@ -24,7 +24,7 @@ if type -q brew
 end
 
 # python の推奨ビルド環境
-set -x PATH "$prefix/opt/sqlite/bin" "$prefix/opt/tcl-tk@8/bin" $PATH
+set -x PATH "$prefix/opt/coreutils/libexec/gnubin" "$prefix/opt/sqlite/bin" "$prefix/opt/tcl-tk@8/bin" $PATH
 set -x LDFLAGS "-L$prefix/opt/sqlite/lib -L$prefix/opt/tcl-tk@8/lib -L$prefix/opt/zlib/lib"
 set -x CPPFLAGS "-I$prefix/opt/sqlite/include -I$prefix/opt/tcl-tk@8/include -I$prefix/opt/zlib/include"
 set -x PKG_CONFIG_PATH "$prefix/opt/sqlite/lib/pkgconfig:$prefix/opt/tcl-tk@8/lib/pkgconfig:$prefix/opt/zlib/lib/pkgconfig"
