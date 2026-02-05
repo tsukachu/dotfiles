@@ -1,35 +1,39 @@
+# =============== Input ===============
 cask "google-japanese-ime"
 
+# =============== Window Management ===============
+cask "divvy"
+
+# =============== Browser ===============
+cask "brave-browser"
+
+# =============== Shell & Terminal ===============
+brew "fish"
 cask "ghostty"
 
+# =============== AI Tools ===============
 cask "claude-code"
 cask "codex"
 
-cask "obsidian"
-
-brew "gh"
-brew "jq"
-
-brew "fish"
-
+# =============== Doom Emacs ===============
 tap "d12frosted/emacs-plus"
-# v30.2(2026/01/21 時点)
-cask "d12frosted/emacs-plus/emacs-plus-app"
-
-# Doom
+cask "d12frosted/emacs-plus/emacs-plus-app" # v30.2 (as of 2026/01/21)
+# ----- dependencies -----
 brew "git"
 brew "ripgrep"
 brew "coreutils"
 brew "fd"
-## doom doctor
+# ---- required by "doom doctor" -----
 brew "fontconfig"
 brew "markdown"
 brew "shellcheck"
 brew "aspell"
 
+# =============== Python ===============
 brew "pyenv"
 brew "pyenv-virtualenv"
-# python の推奨ビルド環境(pyenv v2.6.13 時点)
+# ----- suggested build environment (as of pyenv v2.6.13) -----
+#       ref: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
 brew "openssl"
 brew "readline"
 brew "sqlite3"
@@ -40,13 +44,16 @@ brew "zstd"
 brew "zlib"
 brew "pkgconfig"
 
+# =============== Node ===============
 brew "nodenv"
 brew "node-build"
 
-brew "stow"
+# =============== Core CLI ===============
+brew "gh"
+brew "jq"
+
+# =============== Dev Utilities ===============
+brew "bat" # cat の代替
 brew "eza" # ls の代替
 brew "git-delta" # diff-highlight の代替
-brew "bat" # cat の代替
-
-cask "divvy"
-cask "brave-browser"
+brew "stow" # config の配置に使用
