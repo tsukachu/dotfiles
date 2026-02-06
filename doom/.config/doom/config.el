@@ -130,19 +130,6 @@
 (after! js
   (setq js-indent-level 2))
 
-;; python
-(after! python
-  ;; pyenv-virtualenv使用時、modelineにvenv名を表示させずにpythonのバージョンを表示させる
-  ;; (pyenvがPATHに含まれていると "pyenv version-name" が表示されるのでそれを回避)
-  (defun my/overwrite-variables-before-exec (orig-fn &rest args)
-    (when (and (stringp doom-modeline-env--command)
-               (string-match-p "pyenv" doom-modeline-env--command))
-      (setq doom-modeline-env--command "python")
-      (setq doom-modeline-env--command-args '("--version"))
-      (apply orig-fn args)))
-
-  (advice-add 'doom-modeline-update-env :around #'my/overwrite-variables-before-exec))
-
 ;; web
 (after! web-mode
   (setq web-mode-markup-indent-offset 2)

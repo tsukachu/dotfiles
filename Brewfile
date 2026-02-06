@@ -30,19 +30,7 @@ brew "shellcheck"
 brew "aspell"
 
 # =============== Python ===============
-brew "pyenv"
-brew "pyenv-virtualenv"
-# ----- suggested build environment (as of pyenv v2.6.13) -----
-#       ref: https://github.com/pyenv/pyenv/wiki#suggested-build-environment
-brew "openssl"
-brew "readline"
-brew "sqlite3"
-brew "xz"
-brew "tcl-tk@8"
-brew "libb2"
-brew "zstd"
-brew "zlib"
-brew "pkgconfig"
+brew "uv"
 
 # =============== Node ===============
 brew "nodenv"
