@@ -7,6 +7,9 @@ cask "divvy"
 # =============== Browser ===============
 cask "brave-browser"
 
+# =============== Font ===============
+cask "font-moralerspace-hw-jpdoc"
+
 # =============== Shell & Terminal ===============
 brew "fish"
 cask "ghostty"
