@@ -164,6 +164,10 @@
   (advice-add 'avy-isearch :after #'my/avy-isearch-face-off))
 
 ;;; additional -----------------------------------------------------------------
+;; mise
+(use-package! mise
+  :hook (typescript-ts-mode . mise-mode))
+
 ;; pulsar
 ;; :ui nav-flash はdeprecatedらしくpulsarに置き換わるらしい
 ;; (modules/ui/nav-flash/config.elより)

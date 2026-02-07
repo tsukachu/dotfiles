@@ -32,12 +32,11 @@ brew "markdown"
 brew "shellcheck"
 brew "aspell"
 
+# =============== Version Management ===============
+brew "mise"
+
 # =============== Python ===============
 brew "uv"
-
-# =============== Node ===============
-brew "nodenv"
-brew "node-build"
 
 # =============== Core CLI ===============
 brew "gh"

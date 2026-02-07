@@ -6,11 +6,6 @@ if status is-interactive
 
     # uv
     fish_add_path ~/.local/bin
-
-    #nodenv
-    set -x NODENV_ROOT $HOME/.nodenv # config で都度読み込まれるので-U/--universal は外す
-    test -d $NODENV_ROOT/bin; and fish_add_path $NODENV_ROOT/bin
-    nodenv init - fish | source
 end
 
 if type -q brew
