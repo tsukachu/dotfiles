@@ -108,6 +108,11 @@
         "C-S-<tab>" #'centaur-tabs-backward
         "s-w" #'kill-current-buffer))
 
+;;; :format ------------------------------------------------------------------
+(set-formatter! 'ruff :modes '(python-ts-mode))
+(set-formatter! 'prettier :modes '(typescript-ts-mode))
+(set-formatter! 'gofmt :modes '(go-ts-mode))
+
 ;;; :checkers ------------------------------------------------------------------
 ;; spell
 (after! spell-fu
