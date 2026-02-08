@@ -166,7 +166,8 @@
 ;;; additional -----------------------------------------------------------------
 ;; mise
 (use-package! mise
-  :hook (typescript-ts-mode . mise-mode))
+  :hook
+  ((typescript-ts-mode go-ts-mode) . mise-mode))
 
 ;; pulsar
 ;; :ui nav-flash はdeprecatedらしくpulsarに置き換わるらしい
