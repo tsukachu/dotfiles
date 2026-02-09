@@ -31,7 +31,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-dracula)
+(setq doom-theme 'doom-dark+)
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -162,8 +162,8 @@
     (set-face-background 'lazy-highlight (face-background 'default)))
   (defun my/avy-isearch-face-off ()
     ;; 確実に戻すためにマジックナンバーを使用
-    (set-face-foreground 'lazy-highlight "#DFDFDF") ;; (face-foreground 'lazy-highlight)と同値
-    (set-face-background 'lazy-highlight "#387aa7")) ;; (face-background 'lazy-highlight)と同値
+    (set-face-foreground 'lazy-highlight "#d4d4d4") ;; (face-foreground 'lazy-highlight)と同値
+    (set-face-background 'lazy-highlight "#4b474c")) ;; (face-background 'lazy-highlight)と同値
 
   (advice-add 'avy-isearch :before #'my/avy-isearch-face-on)
   (advice-add 'avy-isearch :after #'my/avy-isearch-face-off))

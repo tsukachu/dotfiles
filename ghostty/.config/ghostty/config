@@ -4,4 +4,4 @@ shell-integration = fish
 font-family = "Moralerspace Neon HWJPDOC"
 font-size = 16
 
-theme = Dracula
+theme = Dark+
