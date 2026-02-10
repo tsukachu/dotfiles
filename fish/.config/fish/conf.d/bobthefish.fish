@@ -3,6 +3,7 @@ set -g theme_nerd_fonts yes
 
 # 右プロンプト
 ## 日付フォーマット
+set -g LANG ja_JP.UTF-8
 set -g theme_date_format "+%Y年%m月%d日(%a) %H:%M"
 ## コマンド実行時間
 set -g theme_display_cmd_duration yes
