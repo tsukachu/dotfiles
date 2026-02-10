@@ -89,8 +89,9 @@
 
 ;;; :ui ------------------------------------------------------------------------
 ;; indent-guides
-(after! indent-bars
-  (setq indent-bars-no-stipple-char ?▏))
+;; char だと表示ズレが起こるので stipple がサポートされる v31 までオフにする
+;; (after! indent-bars
+;;   (setq indent-bars-no-stipple-char ?▏))
 
 ;; modeline
 (after! anzu
