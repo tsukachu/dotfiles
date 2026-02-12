@@ -137,6 +137,10 @@
   (setq lsp-log-io t))
 
 ;;; :lang ----------------------------------------------------------------------
+;; go
+(after! go-mode
+  (set-formatter! 'goimports '("goimports" filepath) :modes '(go-ts-mode)))
+
 ;; js
 (after! js
   (setq js-indent-level 2))
