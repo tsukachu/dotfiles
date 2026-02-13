@@ -46,4 +46,5 @@ brew "jq"
 brew "bat" # cat の代替
 brew "eza" # ls の代替
 brew "git-delta" # diff-highlight の代替
+cask "orbstack"
 brew "stow" # config の配置に使用
