@@ -132,6 +132,24 @@
   (setq ispell-dictionary "en_US"))
 
 ;;; :tools ----------------------------------------------------------------------
+;; debugger
+(after! dape
+  (add-to-list 'dape-configs
+               `(debugpy-remote-attach
+                 modes (python-ts-mode)
+                 host (lambda () (read-string "Host: " "localhost"))
+                 port (lambda () (read-number "Port: " 5678))
+                 :request "attach"
+                 :type "python"
+                 :pathMappings [(:localRoot (lambda ()
+                                              (expand-file-name
+                                               (read-directory-name "Local source directory: "
+                                                                    (funcall dape-cwd-fn))))
+                                 :remoteRoot (lambda ()
+                                               (read-string "Remote source directory: " "/usr/src/app/")))]
+                 :justMyCode nil
+                 :showReturnValue t)))
+
 ;; lsp
 (after! lsp-mode
   (setq lsp-log-io t))
