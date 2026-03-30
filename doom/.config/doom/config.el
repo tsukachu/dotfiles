@@ -82,6 +82,10 @@
 
 (setq-default cursor-type 'bar)
 
+(let ((local-file (expand-file-name "local.el" doom-user-dir)))
+  (when (file-exists-p local-file)
+    (load local-file nil t)))
+
 ;;; :completion ----------------------------------------------------------------
 ;; vertico
 (after! vertico-posframe
@@ -152,7 +156,14 @@
 
 ;; lsp
 (after! lsp-mode
-  (setq lsp-log-io t))
+  (setq lsp-log-io t)
+  ;; (setq lsp-log-max 2000)
+  (dolist (dir '(
+                 "[/\\\\]\\.ruff_cache\\'"
+                 "[/\\\\]\\.svelte-kit\\'"
+                 ))
+    (add-to-list 'lsp-file-watch-ignored-directories dir))
+  )
 
 ;;; :lang ----------------------------------------------------------------------
 ;; go
