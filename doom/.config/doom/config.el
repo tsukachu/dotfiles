@@ -165,6 +165,11 @@
     (add-to-list 'lsp-file-watch-ignored-directories dir))
   )
 
+;; tree-sitter
+(dolist (lang '(go gomod json yaml python typescript))
+  (unless (treesit-language-available-p lang)
+    (treesit-install-language-grammar lang)))
+
 ;;; :lang ----------------------------------------------------------------------
 ;; go
 (after! go-mode
