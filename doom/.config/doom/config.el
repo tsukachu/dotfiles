@@ -92,6 +92,13 @@
   (setq vertico-posframe-poshandler #'posframe-poshandler-frame-top-center))
 
 ;;; :ui ------------------------------------------------------------------------
+;; doom
+(after! doom-themes
+  (unless (find-font (font-spec :name "Symbols Nerd Font Mono"))
+    (run-at-time "1 sec" nil
+                 (lambda ()
+                   (nerd-icons-install-fonts t)))))
+
 ;; indent-guides
 ;; char だと表示ズレが起こるので stipple がサポートされる v31 までオフにする
 ;; (after! indent-bars
