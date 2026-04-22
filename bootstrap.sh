@@ -14,13 +14,10 @@ echo "==> Homebrew をインストール"
 if ! has_command brew; then
     # v5.0.13 時点
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+    eval "$(/opt/homebrew/bin/brew shellenv bash)"
 else
     echo "✓ Homebrew はインストール済み"
 fi
-
-echo "==> パッケージをインストール"
-brew bundle -v
 
 # divvy が intel 用にビルドされているので必要
 echo "==> Rosetta をインストール"
@@ -30,14 +27,18 @@ else
    echo "✓ Rosetta はインストール済み"
 fi
 
-echo "==> Doom Emacs をインストール"
+echo "==> パッケージをインストール"
+brew bundle -v
+
+echo "==> Doom Emacs を clone"
 DOT_EMACS_D_PATH="$HOME/.emacs.d"
-if ! is_dir $DOT_EMACS_D_PATH; then
+DOOM_EMACS_WAS_CLONED=false
+if ! is_dir "$DOT_EMACS_D_PATH"; then
     # 2025/11/29 時点
     git clone https://github.com/hlissner/doom-emacs "$DOT_EMACS_D_PATH"
-    "$DOT_EMACS_D_PATH/bin/doom" install
+    DOOM_EMACS_WAS_CLONED=true
 else
-    echo "✓ Doom Emacs はインストール済み"
+    echo "✓ Doom Emacs は clone 済み"
 fi
 
 echo "===> fisher をインストール"
@@ -54,6 +55,14 @@ fi
 
 echo "===> 設定ファイルを配置"
 mkdir -p ~/.ssh
+mkdir -p "$DOT_EMACS_D_PATH/.local/etc/ispell"
 stow --adopt -v fish doom ghostty git ssh mise
 # --adopt での変更を元に戻す
 git restore .
+
+echo "===> Doom Emacs をインストール"
+if "$DOOM_EMACS_WAS_CLONED"; then
+    "$DOT_EMACS_D_PATH/bin/doom" install
+else
+    echo "✓ Doom Emacs はインストール済み"
+fi

@@ -12,7 +12,7 @@ if type -q brew
     # Homebrew 関連パスの起点を保持
     set --local prefix (brew --prefix)
 
-    eval ("$prefix/bin/brew" shellenv)
+    eval ("$prefix/bin/brew" shellenv fish)
 
     # Depends on Doom Emacs
     if test -d $prefix/opt/coreutils/libexec/gnubin
