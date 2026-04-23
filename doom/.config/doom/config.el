@@ -105,6 +105,9 @@
 ;;   (setq indent-bars-no-stipple-char ?▏))
 
 ;; modeline
+(after! doom-modeline
+  (setq doom-modeline-env-enable-python nil))
+
 (after! anzu
   (global-anzu-mode +1))
 
