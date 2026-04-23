@@ -19,3 +19,26 @@ if type -q brew
         fish_add_path $prefix/opt/coreutils/libexec/gnubin
     end
 end
+
+# ---------- overrides ----------
+if status is-interactive
+    function ...
+        cd ../..
+    end
+
+    function ls
+        eza --icons --group-directories-first $argv
+    end
+
+    function tree
+        eza --tree --icons --ignore-glob='.git|.venv|.ruff_cache' $argv
+    end
+
+    function cat
+        bat --paging=never $argv
+    end
+
+    function less
+        bat --paging=always $argv
+    end
+end
