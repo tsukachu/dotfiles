@@ -166,6 +166,7 @@
 
 ;; lsp
 (after! lsp-mode
+  (setq lsp-enable-suggest-server-download nil)
   (setq lsp-log-io t)
   ;; (setq lsp-log-max 2000)
   (dolist (dir '(
