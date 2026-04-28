@@ -60,6 +60,16 @@ stow --adopt -v fish doom ghostty git ssh mise
 # --adopt での変更を元に戻す
 git restore .
 
+echo "===> mise で node@lts をインストール"
+mise install
+
+echo "===> JSON LSP サーバーをインストール"
+if ! mise exec -- npm list --global vscode-json-languageserver > /dev/null 2>&1; then
+    mise exec -- npm install --global vscode-json-languageserver
+else
+    echo "✓ vscode-json-languageserver はインストール済み"
+fi
+
 echo "===> Doom Emacs をインストール"
 if "$DOOM_EMACS_WAS_CLONED"; then
     "$DOT_EMACS_D_PATH/bin/doom" install
