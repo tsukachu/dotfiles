@@ -56,7 +56,8 @@ fi
 echo "===> 設定ファイルを配置"
 mkdir -p ~/.ssh
 mkdir -p "$DOT_EMACS_D_PATH/.local/etc/ispell"
-stow --adopt -v fish doom ghostty git ssh mise
+mkdir -p ~/.claude
+stow --adopt -v fish doom ghostty git ssh mise claude
 # --adopt での変更を元に戻す
 git restore .
 

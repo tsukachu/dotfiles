@@ -15,7 +15,7 @@ brew "fish"
 cask "ghostty"
 
 # =============== AI Tools ===============
-cask "claude-code"
+cask "claude-code@latest"
 cask "codex"
 
 # =============== Doom Emacs ===============
