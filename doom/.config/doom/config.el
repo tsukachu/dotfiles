@@ -177,7 +177,7 @@
   )
 
 ;; tree-sitter
-(dolist (lang '(go gomod json yaml python typescript))
+(dolist (lang '(go gomod json yaml python typescript vue))
   (unless (treesit-language-available-p lang)
     (treesit-install-language-grammar lang)))
 
