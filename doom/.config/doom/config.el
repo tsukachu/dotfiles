@@ -100,9 +100,8 @@
                    (nerd-icons-install-fonts t)))))
 
 ;; indent-guides
-;; char だと表示ズレが起こるので stipple がサポートされる v31 までオフにする
-;; (after! indent-bars
-;;   (setq indent-bars-no-stipple-char ?▏))
+(after! indent-bars
+  (setq indent-bars-prefer-character nil))
 
 ;; modeline
 (after! doom-modeline
