@@ -42,6 +42,14 @@ brew "uv"
 brew "gh"
 brew "jq"
 
+# =============== Security ===============
+# cask "bitwarden"
+# Proton Authenticator (Manual Installation)
+
+# =============== Backup & Storage ===============
+# UGREEN NAS (Manual Installation)
+brew "b2-tools"
+
 # =============== Dev Utilities ===============
 brew "bat" # cat の代替
 brew "eza" # ls の代替
