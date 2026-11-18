@@ -20,7 +20,7 @@ cask "codex"
 
 # =============== Doom Emacs ===============
 tap "d12frosted/emacs-plus"
-cask "d12frosted/emacs-plus/emacs-plus-app" # v30.2 (as of 2026/01/21)
+cask "d12frosted/emacs-plus/emacs-plus-app" # v31.1 (as of 2026/11/18)
 # ----- dependencies -----
 brew "git"
 brew "ripgrep"
